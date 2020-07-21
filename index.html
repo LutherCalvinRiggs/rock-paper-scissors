@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper, Rock, Scissers</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+function computerPlay(){
+    let computerPick = Math.floor(Math.random()*3);
+
+    switch (computerPick){
+        case 0:
+            return "rock";
+            break;
+        case 1:
+            return "paper";
+            break;
+        case 2: 
+            return "scissors";
+            break;
+    }
+}
+
+function playRound(computerSelection, playerSelection) {
+
+    if (computerSelection === playerSelection) {
+        return 0;
+
+    } else if (computerSelection === "rock" && playerSelection === "scissors") {
+        return 1;
+
+    } else if (computerSelection === "scissors" && playerSelection === "paper"){
+        return 1;
+
+    } else if (computerSelection === "paper" && playerSelection === "rock"){
+        return 1;
+
+    } else if (computerSelection === "rock" && playerSelection === "paper"){
+        return 2;
+
+    } else if (computerSelection === "scissors" && playerSelection === "rock"){
+        return 2;
+
+    } else if (computerSelection === "paper" && playerSelection === "scissors"){
+        return 2;
+
+    } else {
+        return 3;
+    }
+}
+
+
+
+function game(){
+
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+
+        let playerSelection = prompt("Make your choice? Rock, paper, or scissors?").toLowerCase();
+        let computerSelection = computerPlay();
+
+        let currentRound = playRound(computerSelection, playerSelection);
+
+        if (currentRound === 0) {
+            console.log( "Computer chose " + computerSelection + " and Player chose " + playerSelection + ". It's a tie!" );
+            i--;
+
+        } else if (currentRound === 1) {
+            console.log( "Computer chose " + computerSelection + " and Player chose " + playerSelection + ". You lose! " + computerSelection + " beats " + playerSelection + "." );
+            computerScore++;
+
+        } else if (currentRound === 2) {
+            console.log( "Computer chose " + computerSelection + " and Player chose " + playerSelection + ". YOU WIN! " + playerSelection + " beats " + computerSelection + "."  );
+            playerScore++;
+
+        } else if (currentRound === 3) {
+            console.log( "Computer chose " + computerSelection + " and Player chose " + playerSelection + ". Are you sure you're playing the right game?" );
+        }
+
+        console.log( "Player score is " + playerScore );
+        console.log( "Computer score is " + computerScore );
+    }
+
+    if (playerScore > computerScore){
+        console.log( "YOU WON THE GAME!" );
+    } else {
+        console.log( "Computer wins. Better luck next time." );
+    }
+}
+
+game();
+
+
+</script>
+
+</html>
