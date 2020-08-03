@@ -61,14 +61,18 @@ function playRound(computerSelection, playerSelection) {
 
 
 
-function game(){
+function game(e) {
 
+    // const playerChoice = document.querySelector(`button[id='${e.target.id}']`);
+    //     console.log(playerChoice.id);
     let playerScore = 0;
     let computerScore = 0;
 
-    for (let i = 0; i < 5; i++) {
+    // for (let i = 0; i < 5; i++) {
 
-        let playerSelection = prompt("Make your choice? Rock, paper, or scissors?").toLowerCase();
+        // let playerSelection = prompt("Make your choice? Rock, paper, or scissors?").toLowerCase();
+        const playerChoice = document.querySelector(`button[id='${e.target.id}']`);
+        let playerSelection = playerChoice.id;
         let computerSelection = computerPlay();
 
         let currentRound = playRound(computerSelection, playerSelection);
@@ -91,7 +95,7 @@ function game(){
 
         console.log( "Player score is " + playerScore );
         console.log( "Computer score is " + computerScore );
-    }
+    // }
 
     if (playerScore > computerScore){
         console.log( "YOU WON THE GAME!" );
@@ -100,7 +104,7 @@ function game(){
     }
 }
 
-game();
+document.addEventListener('click', game);
 
 
 </script>
