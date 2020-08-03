@@ -11,6 +11,22 @@
     <button id='paper'>Paper</button>
     <button id='scissors'>Scissors</button>
 
+    <div id="scoreboard">
+        
+        <h2 id="scoreboard-title">Scoreboard</h2>
+
+        <div id='score-card'>
+            <h3 id='player-team-title'>Player</h2>
+            <p id='player-score'>0</p>
+        </div>
+
+        <div id='score-card'>
+            <h3 id='computer-team-title'>Computer</h2>
+            <p id='computer-score'>0</p>
+        </div>
+
+    </div>
+
 </body>
 
 <script>
@@ -59,49 +75,52 @@ function playRound(computerSelection, playerSelection) {
     }
 }
 
+function gameOver() {
+    if (playerScore > computerScore){
+            console.log( "YOU WON THE GAME!" );
+        } else {
+            console.log( "Computer wins. Better luck next time." );
+        }
+    playerScore = 0;
+    computerScore = 0;
+}
 
+let playerScore = 0;
+let computerScore = 0;
+let maxScore = prompt('What score do you want to play to?');
 
 function game(e) {
+    const playerChoice = document.querySelector(`button[id='${e.target.id}']`);
+    let playerSelection = playerChoice.id;
+    let computerSelection = computerPlay();
 
-    // const playerChoice = document.querySelector(`button[id='${e.target.id}']`);
-    //     console.log(playerChoice.id);
-    let playerScore = 0;
-    let computerScore = 0;
+    let currentRound = playRound(computerSelection, playerSelection);
 
-    // for (let i = 0; i < 5; i++) {
+    if (currentRound === 0) {
+        console.log( "Computer chose " + computerSelection + " and Player chose " + playerSelection + ". It's a tie!" );
 
-        // let playerSelection = prompt("Make your choice? Rock, paper, or scissors?").toLowerCase();
-        const playerChoice = document.querySelector(`button[id='${e.target.id}']`);
-        let playerSelection = playerChoice.id;
-        let computerSelection = computerPlay();
+    } else if (currentRound === 1) {
+        console.log( "Computer chose " + computerSelection + " and Player chose " + playerSelection + ". You lose! " + computerSelection + " beats " + playerSelection + "." );
+        computerScore++;
 
-        let currentRound = playRound(computerSelection, playerSelection);
+    } else if (currentRound === 2) {
+        console.log( "Computer chose " + computerSelection + " and Player chose " + playerSelection + ". YOU WIN! " + playerSelection + " beats " + computerSelection + "."  );
+        playerScore++;
 
-        if (currentRound === 0) {
-            console.log( "Computer chose " + computerSelection + " and Player chose " + playerSelection + ". It's a tie!" );
-            i--;
-
-        } else if (currentRound === 1) {
-            console.log( "Computer chose " + computerSelection + " and Player chose " + playerSelection + ". You lose! " + computerSelection + " beats " + playerSelection + "." );
-            computerScore++;
-
-        } else if (currentRound === 2) {
-            console.log( "Computer chose " + computerSelection + " and Player chose " + playerSelection + ". YOU WIN! " + playerSelection + " beats " + computerSelection + "."  );
-            playerScore++;
-
-        } else if (currentRound === 3) {
-            console.log( "Computer chose " + computerSelection + " and Player chose " + playerSelection + ". Are you sure you're playing the right game?" );
-        }
-
-        console.log( "Player score is " + playerScore );
-        console.log( "Computer score is " + computerScore );
-    // }
-
-    if (playerScore > computerScore){
-        console.log( "YOU WON THE GAME!" );
-    } else {
-        console.log( "Computer wins. Better luck next time." );
+    } else if (currentRound === 3) {
+        console.log( "Computer chose " + computerSelection + " and Player chose " + playerSelection + ". Are you sure you're playing the right game?" );
     }
+
+    console.log( "Player score is " + playerScore );
+    console.log( "Computer score is " + computerScore );
+
+
+    if (playerScore >= maxScore || computerScore >= maxScore){
+        gameOver();
+    } else {
+        return;
+    }
+
 }
 
 document.addEventListener('click', game);
