@@ -143,5 +143,35 @@ main {
 }
 
 .player-choice-button {
-    font-size: 2rem;
+    font-size: 3.5rem;
+    color: orangered;
+    animation-name: rocking;
+    animation-duration: .5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-play-state: running;
 }
+
+@keyframes rocking {
+    0% { 
+        /* transform: rotateY(-10deg) skewY(-2deg); */
+        transform: skew(-5deg, 1deg);
+        text-shadow: 2px 2px 0px yellow;
+    }
+    25% {
+        text-shadow: 2px -2px 0px yellow;
+
+    }
+    75%{
+        text-shadow: -2px -2px 0px yellow;
+
+    }
+    100% { 
+        /* transform: rotateY(10deg) skewY(2deg); */
+        transform: skew(5deg, -1deg);
+        text-shadow: -2px 2px 0px yellow;
+
+    }
+}
+

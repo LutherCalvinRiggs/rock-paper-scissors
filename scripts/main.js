@@ -45,7 +45,7 @@ function playRound(computerSelection, playerSelection) {
 
 function checkClick(e) {
 
-    const playerChoice = document.querySelector(`button[id='${e.target.id}']`);
+    const playerChoice = document.querySelector(`p[id='${e.target.id}']`);
     
     if (playerChoice !== null) {
         let playerSelection = playerChoice.id;
