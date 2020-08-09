@@ -101,7 +101,8 @@ function gameOver() {
 
 let playerScore = 0;
 let computerScore = 0;
-let maxScore = prompt('What score do you want to play to?'); 
+// let maxScore = prompt('What score do you want to play to?'); 
+let maxScore = 3;
 
 const playerTurn = document.getElementById('player-play');
 const computerTurn = document.getElementById('computer-play');
